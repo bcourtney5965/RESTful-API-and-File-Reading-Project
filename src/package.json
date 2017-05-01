@@ -1,0 +1,28 @@
+{
+  "name": "markup_project",
+  "version": "1.0.0",
+  "description": "Red Ventures project api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcourtney5965/MarkupProject.git"
+  },
+  "author": "brandon courtney",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bcourtney5965/MarkupProject/issues"
+  },
+  "homepage": "https://github.com/bcourtney5965/MarkupProject#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mysql": "^2.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS red_ventures;
+CREATE DATABASE red_ventures;
+
+USE red_ventures;
+
+DROP TABLE IF EXISTS documents;
+CREATE TABLE documents (
+  ID INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(30) NOT NULL,
+  date DATE NOT NULL,
+  time TIME NULL,
+  score INT NOT NULL,
+  PRIMARY KEY (ID)
+);
