@@ -12,3 +12,7 @@ CREATE TABLE documents (
   score INT NULL,
   PRIMARY KEY (ID)
 );
+
+INSERT INTO documents (name) VALUES ('Bob');
+INSERT INTO documents (name) VALUES ('Brandon');
+INSERT INTO documents (name) VALUES ('Tom');
