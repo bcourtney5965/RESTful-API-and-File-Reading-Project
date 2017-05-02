@@ -13,6 +13,6 @@ CREATE TABLE documents (
   PRIMARY KEY (ID)
 );
 
-INSERT INTO documents (name) VALUES ('Bob');
-INSERT INTO documents (name) VALUES ('Brandon');
-INSERT INTO documents (name) VALUES ('Tom');
+INSERT INTO documents (name, date, time, score) VALUES ('dougs', CURDATE(), CURTIME(), 4);
+INSERT INTO documents (name, date, time, score) VALUES ('Bob', CURDATE(), CURTIME(), 6);
+INSERT INTO documents (name, date, time, score) VALUES ('John', CURDATE(), CURTIME(), 9);
