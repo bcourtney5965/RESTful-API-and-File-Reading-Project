@@ -1,4 +1,4 @@
-var cheerio = require('cheerio');
+var cheerio = require('../../vendor/cheerio/');
 
 const countElements = (string) => {
   const scoredElems = ['div', 'p', 'h1', 'h2', 'html', 'body', 'header', 'footer', 'font', 'center', 'big', 'strike', 'tt', 'frameset', 'frame'];

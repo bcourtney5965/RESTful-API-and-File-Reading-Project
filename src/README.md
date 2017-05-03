@@ -1,5 +1,6 @@
 To Run App
 -----------------
+* Naviate to the /vendor/cheerio/ directory & run `npm install`
 * Naviate to the /src directory
 * run `npm install`
 * open new shell and run `mysql.server start --skip-grant-tables` to start db derver
