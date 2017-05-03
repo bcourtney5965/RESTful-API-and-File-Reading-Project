@@ -1,23 +1,20 @@
-// get all files
-// for each file
-//      put file name in DB
-
 const fs = require('fs');
 const db = require('../db');
+const calculateScore = require('./fileScorer');
 
 fs.readdir('../../data', (err, files) => {
   if (err) {
     throw err;
   }
-  // files = files.slice(1);
-  files.forEach( (name, mockScore)  => {
-    fs.readFile(`../../data/${name}`, 'utf8', (error, data) => {
-      if (error) {
-        throw error;
+  files = files.slice(1);
+  files.forEach( fileName => {
+    fs.readFile(`../../data/${fileName}`, 'utf8', (err, data) => {
+      if (err) {
+        throw err;
       }
+      const score = calculateScore(data);
       const queryString = `INSERT INTO documents (NAME, DATE, TIME, SCORE) VALUES (?, CURDATE(), CURTIME(), ?)`;
-      const fileInfo = [name, mockScore];
-      db.query(queryString, fileInfo, (err, res) => {
+      db.query(queryString, [fileName, score], (err, res) => {
         if (err) {
           throw err;
         }
