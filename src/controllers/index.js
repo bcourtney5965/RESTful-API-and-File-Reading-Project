@@ -24,11 +24,24 @@ const dateRange = (req, res) => {
   });
 }
 
-// Method: Retrieve highest scored unique id (returns an name)
+// Method: Retrieve highest scored unique id (returns a name)
 const idHighScore = (req, res) => {
   // include name and score for easier data visualizing
   const queryString = 'SELECT name, score FROM documents WHERE score = (SELECT Max(score) FROM documents);';
-  db.query(queryString, [req.params.id], (err, data) => {
+  db.query(queryString, (err, data) => {
+    if (err) {
+      throw new Error(err);
+    }
+    data = data.map(obj => obj.name);
+    res.send(data[0]);
+  })
+}
+
+// Method: Retrieve lowest scored unique id (returns a name)
+const idLowestScore = (req, res) => {
+  // include name and score for easier data visualizing
+  const queryString = 'SELECT name, score FROM documents WHERE score = (SELECT Min(score) FROM documents);';
+  db.query(queryString, (err, data) => {
     if (err) {
       throw new Error(err);
     }
@@ -40,3 +53,4 @@ const idHighScore = (req, res) => {
 exports.scoresById = scoresById;
 exports.dateRange = dateRange;
 exports.idHighScore = idHighScore;
+exports.idLowestScore = idLowestScore;
