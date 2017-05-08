@@ -13,8 +13,12 @@ fs.readdir('../../data', (err, files) => {
         throw err;
       }
       const score = calculateScore(data);
-      const queryString = `INSERT INTO documents (NAME, DATE, TIME, SCORE) VALUES (?, CURDATE(), CURTIME(), ?)`;
-      db.query(queryString, [fileName, score], (err, res) => {
+      fileName = fileName.substring(0, fileName.length - 5);
+      const fileNameArr = fileName.split('_');
+      const id = fileNameArr[0];
+      const date = fileNameArr.slice(1).join('-');
+      const queryString = `INSERT INTO documents (NAME, DATE, SCORE) VALUES (?, ?, ?)`;
+      db.query(queryString, [id, date, score], (err, res) => {
         if (err) {
           throw err;
         }
