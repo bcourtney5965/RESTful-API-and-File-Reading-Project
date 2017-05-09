@@ -50,7 +50,23 @@ const idLowestScore = (req, res) => {
   })
 }
 
+// // Method: Finds the average score for all runs see project layout below
+const averageScore = (req, res) => {
+  const queryString = 'SELECT score FROM documents;';
+  db.query(queryString, (err, data) => {
+    if (err) {
+      throw new Error(err);
+    }
+    const total = data.reduce((total, cur) => {
+      return total + cur.score;
+    }, 0);
+    const response = String(total/data.length);
+    res.send(response);
+  })
+}
+
 exports.scoresById = scoresById;
 exports.dateRange = dateRange;
 exports.idHighScore = idHighScore;
 exports.idLowestScore = idLowestScore;
+exports.averageScore = averageScore;

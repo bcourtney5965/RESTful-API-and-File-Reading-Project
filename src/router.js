@@ -6,6 +6,7 @@ router.get('/getScores/:id', controllers.scoresById);
 router.get('/dateRange/:startDate/:endDate', controllers.dateRange);
 router.get('/highScore', controllers.idHighScore);
 router.get('/lowScore', controllers.idLowestScore);
+router.get('/averageScore', controllers.averageScore);
 
 
 module.exports = router;
