@@ -1,0 +1,1 @@
+I used an external library called Cheerio (https://www.npmjs.com/package/cheerio)

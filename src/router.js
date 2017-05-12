@@ -8,5 +8,4 @@ router.get('/highScore', controllers.idHighScore);
 router.get('/lowScore', controllers.idLowestScore);
 router.get('/averageScore', controllers.averageScore);
 
-
 module.exports = router;

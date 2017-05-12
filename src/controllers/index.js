@@ -33,7 +33,6 @@ exports.idHighScore = (req, res) => {
       return res.sendStatus(404).send(err);
     }
     data = data.map(obj => obj.name);
-    // res.status(200).send(data[0]);
     res.status(200).json({"data": data[0]});
 
   })
