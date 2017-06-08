@@ -1,34 +1,46 @@
 MarkupProject
 =============
 
-Info
-----
-Create a class in the langauge of your choice that will read HTML content input and score and give
-an arbitrary score based on a set of rules. The content should be assigned a unique id based on the prefix described below.
-Changes to the content can be re-run over time to determine improvement or regression of the score. Each unique run should be stored with the date and time it was run along with the score received for the content.
-
-You may use external libraries if you feel they will help, but you must place them in the appropriate folder based on the project layout section.
-
-Code Requirements
+About
 -----------------
-* Accept HTML Content Input
-* Accept unique id for HTML Content to score (filename prefix)
-* Score HTML content using the scoring guide
-* Save results to a MySQL database
-* Method: Retrieve scores for a unique id
-* Method: Retrieve all scores run in the system for a custom date range
-* Method: Retrieve highest scored unique id
-* Method: Retrieve lowest scored unique id
-* Additionally you should write one query that will find the average score for all runs **__see project layout below__**
-* Finally, include instructions on how to get your code running.  Include the version of whatever language you wrote it in, as well as what platform (windows/osx/linux, etc) you are on.  This helps us get running with your code.
+A backend cooding challenge I completed that:
+1. Reads the content from the files in the /data directory
+2. Scores the content according to a set of rules
+3. Stores this data in mySQL
+4. I created a restful API to access the data
 
-## Bonus
-* Tag names are case-insensitive (ie: Html is the same as html)
-* Parse multiple sections of the HTML content at the same time for performance
+The API includes the following endpoints:
+-----------------
+| Function  | URL                                 | Action                                |
+| --------- |-------------------------------------|:--------------------------------------|
+| READ      | /api/getScores/:id                  | Get score by id                       |
+| READ      | /api/dateRange/:startDate/:endDate  | Get all scores between specified date |
+| READ      | /api/highScore                      | Get high score                        |
+| READ      | /api/lowScore                       | Get low score                         |
+| READ      | /api/averageScore                   | Get average score                     |
+
+To Run App
+-----------------
+* Naviate to the /vendor/cheerio/ directory & run `npm install`
+* Naviate to the /src directory
+* run `npm install`
+* open new shell and run `mysql.server start --skip-grant-tables` to start db derver
+* run `mysql`
+* run `FLUSH PRIVILEGES;`
+* run `ALTER USER 'root'@'localhost' IDENTIFIED BY '';`
+* open new shell and run `npm run setSchema` within the src directory
+* Back in mySQL shell run `use red_ventures;` and the `describe red_ventures.documents;` to view table
+* run `npm start` in src directory to start Express Server
+
+To shut down app
+-----------------
+* in mySQL shell `\q` to exit shell
+* run `mysql.server stop` to stop db derver
+* ctrl + c to kill Express Server
 
 Scoring Rules
 -------------
-Each starting tag should below has been assigned a score. Each tag in the content should be added to or subtracted from the total score.
+Each starting tag below has been assigned a score. Each tag in the content should be added to or subtracted from the total score.
 
 (We will assume for this project our html code creator created valid html)
 
@@ -78,12 +90,12 @@ ie:
 
 #### /src
 
-* Your code goes in here.
+* My code is located here
 
 #### /schema
 
-* Your create table statements for MySQL.
-* Your query to find the average score across each key. (see data example below)
+* The create table statements for MySQL.
+* My query to find the average score across each key.
 
 ie:
 
@@ -94,11 +106,4 @@ ie:
 
 #### /vendor
 
-* Place any external libraries not written by you in the /vendor folder
-
-Instructions
-------------
-* Fork this repo into your own github account.  
-* Begin working on the project and commit your code to your forked repo.
-* When you are finished. Email your RedVentures recruiter or submit a pull request on the project.
-* Note that each folder has a blank README.md file.  Feel free to place any notes you may have in these files.
+* Where I included external libraries not written by me (Cheerio).
