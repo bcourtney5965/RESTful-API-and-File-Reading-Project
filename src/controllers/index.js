@@ -15,7 +15,29 @@ exports.scoresById = (req, res) => {
 // Method: Retrieve all scores for a custom date range.
 exports.dateRange = (req, res) => {
   const queryString = 'SELECT score FROM documents WHERE date BETWEEN ? AND ?;';
-  db.query(queryString, [req.params.startDate, req.params.endDate], (err, data) => {
+  const startDate = new Date(req.params.startDate);
+  const endDate = new Date(req.params.endDate);
+
+
+  let startDay = startDate.getDate();
+  if (startDay < 10) {
+    startDay = `0${startDay}`;
+  }
+  let startMonth = startDate.getMonth() + 1;
+  if (startMonth < 10) {
+    startMonth = `0${startMonth}`;
+  }
+
+  let endDay = endDate.getDate();
+  if (endDay < 10) {
+    endDay = `0${endDay}`;
+  }
+  let endMonth = endDate.getMonth() + 1;
+  if (endMonth < 10) {
+    endMonth = `0${endMonth}`;
+  }
+
+  db.query(queryString, [startDate, endDate], (err, data) => {
     if (err) {
       return res.sendStatus(404).send(err);
     }
