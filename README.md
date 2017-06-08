@@ -3,7 +3,7 @@ MarkupProject
 
 About
 -----------------
-A backend cooding challenge I completed that:
+A backend coding challenge I completed that:
 1. Reads the content from the files in the /data directory
 2. Scores the content according to a set of rules
 3. Stores this data in mySQL
