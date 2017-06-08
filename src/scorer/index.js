@@ -6,7 +6,7 @@ fs.readdir('../../data', (err, files) => {
   if (err) {
     throw err;
   }
-  let values = [];
+  let rows = [];
   files = files.slice(1);
   files.forEach( fileName => {
     fs.readFile(`../../data/${fileName}`, 'utf8', (err, data) => {
@@ -18,10 +18,10 @@ fs.readdir('../../data', (err, files) => {
       const id = fileNameArr[0];
       const date = fileNameArr.slice(1).join('-');
       const score = calculateScore(data);
-      values.push([id, date, score]);
-      if (values.length === files.length ) {
-        const queryString = `INSERT INTO documents (NAME, DATE, SCORE) VALUES ?`;
-        db.query(queryString, [values], (err, res) => {
+      rows.push([id, date, score]);
+      if (rows.length === files.length ) {
+        const queryString = `INSERT INTO documents (NAME, DATE, SCORE) VALUES ? on duplicate key update score = ?`;
+        db.query(queryString, [rows], (err, res) => {
           if (err) {
             throw err;
           }
